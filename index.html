@@ -1,0 +1,3045 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="components/loader.js"></script>
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/function.js"></script>
+    <script src="js/database.js"></script>
+    <script>
+        ons.bootstrap();
+        ons.disableAutoStatusBarFill();
+    </script>
+   
+</head>
+<body>
+    <ons-navigator title="Navigator" var="myNavigator">
+  <ons-page style="background: url('images/many-fruits-bg.jpg') no-repeat fixed center">
+    <center>
+    <div style="margin-top:30px">
+        <img src="images/tap2fresh-LOGO.png" height="auto" width="200px" />
+    </div>
+    <div style="margin-top:30px">        
+        <button class="button--cta menu-button" onclick="myNavigator.pushPage('soalbuah0', { animation : 'slide' } )">Tebak Buah</button>
+        <button class="button--cta menu-button" onclick="myNavigator.pushPage('soalsayur0', { animation : 'slide' } )">Tebak Sayur</button>
+    </div>
+        <!-- <ons-button class="about" style="margin-top:130px; text-align:center; border-color:#dddddd; color:#dddddd" onclick="ons.notification.alert({message: 'Tap2Fresh v1.0 Made by IPB Dev: 1)Muhammad Zulfikar G64120062 2)Herdian Nugraha G64120042 3)Muhammad Nuh Yahya G64120018 4)Kiagus Abdul F. G64120040'});" modifier="light">About</ons-button> -->   
+    <ons-button class="about" onclick="window.location='about.html'" style="margin-top:90px; text-align:center; border-color:#dddddd; color:#dddddd" modifier="light">About</ons-button><br/> <br/>
+    <a href="bugs.html" style="text-align:center; line-height:1.7em; font-size:90%; color:#dddddd">Bugs Report</a>
+    </center>
+     
+  </ons-page>
+</ons-navigator>
+
+<!-- start of soal nol -->
+<ons-template id="soalbuah0">
+  <ons-page modifier="shop-details">
+ <script>
+document.write('<div class="card" style="background-image : url(images/edit/'+buah[answerBuah[0]].nama+'.jpg);"></div>');
+ </script>
+        <center>
+        <p style="margin-top:15px;">Buah apakah ini?</p>
+        </center>
+    </div>    
+    <center>
+    <script>
+        n = [0,1,2,3,4,5,6,7,8,9];
+        n.splice(answerBuah[0],1);
+        n = getRandom(n,3);
+        n.push(answerBuah[0]);
+        shuffle(n);
+    </script>
+    <form id="formbuah0">
+    <ons-list>
+        <ons-list-header>Pilih salah satu dari pilihan dibawah ini:</ons-list-header>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+          <script>
+              document.write('<input type="radio"  name="jwb" value='+n[0]+' onclick="return hideSalah(1);"/>');
+          </script>
+            
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+             <script>
+              document.write(buah[n[0]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[1]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(buah[n[1]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+           <script>
+              document.write('<input type="radio"  name="jwb" value='+n[2]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(buah[n[2]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item" >
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[3]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+           <script>
+              document.write(buah[n[3]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-button id="submit0" class="pilihan" modifier="large--cta" onclick="return cekJawaban(0);">Submit</ons-button>
+         <ons-button id="jaws0" style="display:none" class="pilihan" modifier="large--cta" onclick="myNavigator.pushPage('benar0', { animation : 'slide' } );">Lihat Detail ></ons-button>
+    </ons-list>
+
+    </form>
+    <div id="salah0">     
+    </div>
+    </center>
+    
+  </ons-page>
+</ons-template>
+
+<ons-template id="benar0">
+    <ons-page>
+     <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>    
+     </ons-toolbar>
+     <script>
+         document.write('<div class="card" style="background-image: url(images/asli/'+buah[answerBuah[0]].nama+'.jpg);">');
+     </script>
+     
+        <div class="card-name-bg"></div>
+        <div class="card-name">BENAR!</div>
+    </div>
+    <div class="caption">
+        <center>
+        <script>
+            document.write('<p style="margin-top:5px;">Buah '+buah[answerBuah[0]].nama+'<br/><i>'+buah[answerBuah[0]].namalatin+'</i></p>')
+        </script>
+        
+        </center>
+    </div>
+    
+    <ons-list>
+
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('desk0', { animation : 'slide' } )">Deskripsi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('gizi0', { animation : 'slide' } )">Kandungan Gizi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('hasilguna0', { animation : 'slide' } )">Hasil dan Kegunaan</ons-list-item>
+    <ons-button id="lanjut0" class="next" modifier="large--cta" onclick="nextBuah(0)">Next Level ></ons-button>
+    
+  </ons-list>
+    </ons-page>    
+</ons-template>
+
+<ons-template id="desk0">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Deskripsi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(buah[answerBuah[0]].deskripsi);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="gizi0">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Kandungan Gizi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(buah[answerBuah[0]].kandungan);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="hasilguna0">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Hasil dan Kegunaan</div>
+    </ons-toolbar>
+
+    <script>
+        document.write(buah[answerBuah[0]].hasilguna);
+    </script>
+  </ons-page>
+</ons-template>
+<!-- eof soal nol -->
+
+
+
+<!-- start of soal satu -->
+<ons-template id="soalbuah1">
+  <ons-page modifier="shop-details">
+ <script>
+document.write('<div class="card" style="background-image : url(images/edit/'+buah[answerBuah[1]].nama+'.jpg);"></div>');
+ </script>
+        <center>
+        <p style="margin-top:15px;">Buah apakah ini?</p>
+        </center>
+    </div>    
+    <center>
+    <script>
+        n = [0,1,2,3,4,5,6,7,8,9];
+        n.splice(answerBuah[1],1);
+        n = getRandom(n,3);
+        n.push(answerBuah[1]);
+        shuffle(n);
+    </script>
+    <form id="formbuah1">
+    <ons-list>
+        <ons-list-header>Pilih salah satu dari pilihan dibawah ini:</ons-list-header>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+          <script>
+              document.write('<input type="radio"  name="jwb" value='+n[0]+' onclick="return hideSalah(1);"/>');
+          </script>
+            
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+             <script>
+              document.write(buah[n[0]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[1]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(buah[n[1]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+           <script>
+              document.write('<input type="radio"  name="jwb" value='+n[2]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(buah[n[2]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item" >
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[3]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+           <script>
+              document.write(buah[n[3]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-button id="submit1" class="pilihan" modifier="large--cta" onclick="return cekJawaban(1);">Submit</ons-button>
+        <ons-button id="jaws1" style="display:none" class="pilihan" modifier="large--cta" onclick="myNavigator.pushPage('benar1', { animation : 'slide' } );">Lihat Detail ></ons-button>
+    </ons-list>
+
+    </form>
+    <div id="salah1">     
+    </div>
+    </center>
+    
+  </ons-page>
+</ons-template>
+
+<ons-template id="benar1">
+    <ons-page>
+     <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>    
+     </ons-toolbar>
+     <script>
+         document.write('<div class="card" style="background-image: url(images/asli/'+buah[answerBuah[1]].nama+'.jpg);">');
+     </script>
+     
+        <div class="card-name-bg"></div>
+        <div class="card-name">BENAR!</div>
+    </div>
+    <div class="caption">
+        <center>
+        <script>
+            document.write('<p style="margin-top:5px;">Buah '+buah[answerBuah[1]].nama+'<br/><i>'+buah[answerBuah[1]].namalatin+'</i></p>')
+        </script>
+        
+        </center>
+    </div>
+    
+    <ons-list>
+
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('desk1', { animation : 'slide' } )">Deskripsi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('gizi1', { animation : 'slide' } )">Kandungan Gizi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('hasilguna1', { animation : 'slide' } )">Hasil dan Kegunaan</ons-list-item>
+    <ons-button id="lanjut1" class="next" modifier="large--cta" onclick="nextBuah(1)">Next Level ></ons-button>
+    
+  </ons-list>
+    </ons-page>    
+</ons-template>
+
+<ons-template id="desk1">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Deskripsi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(buah[answerBuah[1]].deskripsi);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="gizi1">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Kandungan Gizi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(buah[answerBuah[1]].kandungan);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="hasilguna1">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Hasil dan Kegunaan</div>
+    </ons-toolbar>
+
+    <script>
+        document.write(buah[answerBuah[1]].hasilguna);
+    </script>
+  </ons-page>
+</ons-template>
+<!-- eof soal satu -->
+
+<!-- start of soal dua -->
+<ons-template id="soalbuah2">
+  <ons-page modifier="shop-details">
+ <script>
+document.write('<div class="card" style="background-image : url(images/edit/'+buah[answerBuah[2]].nama+'.jpg);"></div>');
+ </script>
+        <center>
+        <p style="margin-top:15px;">Buah apakah ini?</p>
+        </center>
+    </div>    
+    <center>
+    <script>
+        n = [0,1,2,3,4,5,6,7,8,9];
+        n.splice(answerBuah[2],1);
+        n = getRandom(n,3);
+        n.push(answerBuah[2]);
+        shuffle(n);
+    </script>
+    <form id="formbuah2">
+    <ons-list>
+        <ons-list-header>Pilih salah satu dari pilihan dibawah ini:</ons-list-header>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+          <script>
+              document.write('<input type="radio"  name="jwb" value='+n[0]+' onclick="return hideSalah(1);"/>');
+          </script>
+            
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+             <script>
+              document.write(buah[n[0]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[1]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(buah[n[1]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+           <script>
+              document.write('<input type="radio"  name="jwb" value='+n[2]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(buah[n[2]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item" >
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[3]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+           <script>
+              document.write(buah[n[3]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-button id="submit2" class="pilihan" modifier="large--cta" onclick="return cekJawaban(2);">Submit</ons-button>
+        <ons-button id="jaws2" style="display:none" class="pilihan" modifier="large--cta" onclick="myNavigator.pushPage('benar2', { animation : 'slide' } );">Lihat Detail ></ons-button>
+    </ons-list>
+
+    </form>
+    <div id="salah2">     
+    </div>
+    </center>
+    
+  </ons-page>
+</ons-template>
+
+<ons-template id="benar2">
+    <ons-page>
+     <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>    
+     </ons-toolbar>
+     <script>
+         document.write('<div class="card" style="background-image: url(images/asli/'+buah[answerBuah[2]].nama+'.jpg);">');
+     </script>
+     
+        <div class="card-name-bg"></div>
+        <div class="card-name">BENAR!</div>
+    </div>
+    <div class="caption">
+        <center>
+        <script>
+            document.write('<p style="margin-top:5px;">Buah '+buah[answerBuah[2]].nama+'<br/><i>'+buah[answerBuah[2]].namalatin+'</i></p>')
+        </script>
+        
+        </center>
+    </div>
+    
+    <ons-list>
+
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('desk2', { animation : 'slide' } )">Deskripsi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('gizi2', { animation : 'slide' } )">Kandungan Gizi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('hasilguna2', { animation : 'slide' } )">Hasil dan Kegunaan</ons-list-item>
+    <ons-button id="lanjut2" class="next" modifier="large--cta"  onclick="nextBuah(2)">Next Level ></ons-button>
+    
+  </ons-list>
+    </ons-page>    
+</ons-template>
+
+<ons-template id="desk2">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Deskripsi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(buah[answerBuah[2]].deskripsi);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="gizi2">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Kandungan Gizi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(buah[answerBuah[2]].kandungan);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="hasilguna2">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Hasil dan Kegunaan</div>
+    </ons-toolbar>
+
+    <script>
+        document.write(buah[answerBuah[2]].hasilguna);
+    </script>
+  </ons-page>
+</ons-template>
+<!-- eof soal dua -->
+
+<!-- start of soal tiga -->
+<ons-template id="soalbuah3">
+  <ons-page modifier="shop-details">
+ <script>
+document.write('<div class="card" style="background-image : url(images/edit/'+buah[answerBuah[3]].nama+'.jpg);"></div>');
+ </script>
+        <center>
+        <p style="margin-top:15px;">Buah apakah ini?</p>
+        </center>
+    </div>    
+    <center>
+    <script>
+        n = [0,1,2,3,4,5,6,7,8,9];
+        n.splice(answerBuah[3],1);
+        n = getRandom(n,3);
+        n.push(answerBuah[3]);
+        shuffle(n);
+    </script>
+    <form id="formbuah3">
+    <ons-list>
+        <ons-list-header>Pilih salah satu dari pilihan dibawah ini:</ons-list-header>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+          <script>
+              document.write('<input type="radio"  name="jwb" value='+n[0]+' onclick="return hideSalah(1);"/>');
+          </script>
+            
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+             <script>
+              document.write(buah[n[0]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[1]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(buah[n[1]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+           <script>
+              document.write('<input type="radio"  name="jwb" value='+n[2]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(buah[n[2]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item" >
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[3]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+           <script>
+              document.write(buah[n[3]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-button id="submit3" class="pilihan" modifier="large--cta" onclick="return cekJawaban(3);">Submit</ons-button>
+        <ons-button id="jaws3" style="display:none" class="pilihan" modifier="large--cta" onclick="myNavigator.pushPage('benar3', { animation : 'slide' } );">Lihat Detail ></ons-button>
+    </ons-list>
+
+    </form>
+    <div id="salah3">     
+    </div>
+    </center>
+    
+  </ons-page>
+</ons-template>
+
+<ons-template id="benar3">
+    <ons-page>
+     <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>    
+     </ons-toolbar>
+     <script>
+         document.write('<div class="card" style="background-image: url(images/asli/'+buah[answerBuah[3]].nama+'.jpg);">');
+     </script>
+     
+        <div class="card-name-bg"></div>
+        <div class="card-name">BENAR!</div>
+    </div>
+    <div class="caption">
+        <center>
+        <script>
+            document.write('<p style="margin-top:5px;">Buah '+buah[answerBuah[3]].nama+'<br/><i>'+buah[answerBuah[3]].namalatin+'</i></p>')
+        </script>
+        
+        </center>
+    </div>
+    
+    <ons-list>
+
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('desk3', { animation : 'slide' } )">Deskripsi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('gizi3', { animation : 'slide' } )">Kandungan Gizi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('hasilguna3', { animation : 'slide' } )">Hasil dan Kegunaan</ons-list-item>
+    <ons-button id="lanjut3" class="next" modifier="large--cta" onclick="nextBuah(3)">Next Level ></ons-button>
+    
+  </ons-list>
+    </ons-page>    
+</ons-template>
+
+<ons-template id="desk3">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Deskripsi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(buah[answerBuah[3]].deskripsi);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="gizi3">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Kandungan Gizi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(buah[answerBuah[3]].kandungan);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="hasilguna3">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Hasil dan Kegunaan</div>
+    </ons-toolbar>
+
+    <script>
+        document.write(buah[answerBuah[3]].hasilguna);
+    </script>
+  </ons-page>
+</ons-template>
+<!-- eof soal tiga -->
+
+<!-- start of soal empat -->
+<ons-template id="soalbuah4">
+  <ons-page modifier="shop-details">
+ <script>
+document.write('<div class="card" style="background-image : url(images/edit/'+buah[answerBuah[4]].nama+'.jpg);"></div>');
+ </script>
+        <center>
+        <p style="margin-top:15px;">Buah apakah ini?</p>
+        </center>
+    </div>    
+    <center>
+    <script>
+        n = [0,1,2,3,4,5,6,7,8,9];
+        n.splice(answerBuah[4],1);
+        n = getRandom(n,3);
+        n.push(answerBuah[4]);
+        shuffle(n);
+    </script>
+    <form id="formbuah4">
+    <ons-list>
+        <ons-list-header>Pilih salah satu dari pilihan dibawah ini:</ons-list-header>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+          <script>
+              document.write('<input type="radio"  name="jwb" value='+n[0]+' onclick="return hideSalah(1);"/>');
+          </script>
+            
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+             <script>
+              document.write(buah[n[0]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[1]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(buah[n[1]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+           <script>
+              document.write('<input type="radio"  name="jwb" value='+n[2]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(buah[n[2]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item" >
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[3]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+           <script>
+              document.write(buah[n[3]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-button id="submit4" class="pilihan" modifier="large--cta" onclick="return cekJawaban(4);">Submit</ons-button>
+        <ons-button id="jaws4" style="display:none" class="pilihan" modifier="large--cta" onclick="myNavigator.pushPage('benar4', { animation : 'slide' } );">Lihat Detail ></ons-button>
+    </ons-list>
+
+    </form>
+    <div id="salah4">     
+    </div>
+    </center>
+    
+  </ons-page>
+</ons-template>
+
+<ons-template id="benar4">
+    <ons-page>
+     <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>    
+     </ons-toolbar>
+     <script>
+         document.write('<div class="card" style="background-image: url(images/asli/'+buah[answerBuah[4]].nama+'.jpg);">');
+     </script>
+     
+        <div class="card-name-bg"></div>
+        <div class="card-name">BENAR!</div>
+    </div>
+    <div class="caption">
+        <center>
+        <script>
+            document.write('<p style="margin-top:5px;">Buah '+buah[answerBuah[4]].nama+'<br/><i>'+buah[answerBuah[4]].namalatin+'</i></p>')
+        </script>
+        
+        </center>
+    </div>
+    
+    <ons-list>
+
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('desk4', { animation : 'slide' } )">Deskripsi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('gizi4', { animation : 'slide' } )">Kandungan Gizi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('hasilguna4', { animation : 'slide' } )">Hasil dan Kegunaan</ons-list-item>
+    <ons-button id="lanjut4" class="next" modifier="large--cta" onclick="nextBuah(4)">Next Level ></ons-button>
+    
+  </ons-list>
+    </ons-page>    
+</ons-template>
+
+<ons-template id="desk4">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Deskripsi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(buah[answerBuah[4]].deskripsi);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="gizi4">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Kandungan Gizi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(buah[answerBuah[4]].kandungan);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="hasilguna4">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Hasil dan Kegunaan</div>
+    </ons-toolbar>
+
+    <script>
+        document.write(buah[answerBuah[4]].hasilguna);
+    </script>
+  </ons-page>
+</ons-template>
+<!-- eof soal empat -->
+
+<!-- start of soal lima -->
+<ons-template id="soalbuah5">
+  <ons-page modifier="shop-details">
+ <script>
+document.write('<div class="card" style="background-image : url(images/edit/'+buah[answerBuah[5]].nama+'.jpg);"></div>');
+ </script>
+        <center>
+        <p style="margin-top:15px;">Buah apakah ini?</p>
+        </center>
+    </div>    
+    <center>
+    <script>
+        n = [0,1,2,3,4,5,6,7,8,9];
+        n.splice(answerBuah[5],1);
+        n = getRandom(n,3);
+        n.push(answerBuah[5]);
+        shuffle(n);
+    </script>
+    <form id="formbuah5">
+    <ons-list>
+        <ons-list-header>Pilih salah satu dari pilihan dibawah ini:</ons-list-header>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+          <script>
+              document.write('<input type="radio"  name="jwb" value='+n[0]+' onclick="return hideSalah(1);"/>');
+          </script>
+            
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+             <script>
+              document.write(buah[n[0]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[1]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(buah[n[1]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+           <script>
+              document.write('<input type="radio"  name="jwb" value='+n[2]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(buah[n[2]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item" >
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[3]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+           <script>
+              document.write(buah[n[3]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-button id="submit5" class="pilihan" modifier="large--cta" onclick="return cekJawaban(5);">Submit</ons-button>
+        <ons-button id="jaws5" style="display:none" class="pilihan" modifier="large--cta" onclick="myNavigator.pushPage('benar5', { animation : 'slide' } );">Lihat Detail ></ons-button>
+    </ons-list>
+
+    </form>
+    <div id="salah5">     
+    </div>
+    </center>
+    
+  </ons-page>
+</ons-template>
+
+<ons-template id="benar5">
+    <ons-page>
+     <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>    
+     </ons-toolbar>
+     <script>
+         document.write('<div class="card" style="background-image: url(images/asli/'+buah[answerBuah[5]].nama+'.jpg);">');
+     </script>
+     
+        <div class="card-name-bg"></div>
+        <div class="card-name">BENAR!</div>
+    </div>
+    <div class="caption">
+        <center>
+        <script>
+            document.write('<p style="margin-top:5px;">Buah '+buah[answerBuah[5]].nama+'<br/><i>'+buah[answerBuah[5]].namalatin+'</i></p>')
+        </script>
+        
+        </center>
+    </div>
+    
+    <ons-list>
+
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('desk5', { animation : 'slide' } )">Deskripsi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('gizi5', { animation : 'slide' } )">Kandungan Gizi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('hasilguna5', { animation : 'slide' } )">Hasil dan Kegunaan</ons-list-item>
+    <ons-button id="lanjut5" class="next" modifier="large--cta" onclick="nextBuah(5)">Next Level ></ons-button>
+    
+  </ons-list>
+    </ons-page>    
+</ons-template>
+
+<ons-template id="desk5">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Deskripsi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(buah[answerBuah[5]].deskripsi);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="gizi5">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Kandungan Gizi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(buah[answerBuah[5]].kandungan);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="hasilguna5">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Hasil dan Kegunaan</div>
+    </ons-toolbar>
+
+    <script>
+        document.write(buah[answerBuah[5]].hasilguna);
+    </script>
+  </ons-page>
+</ons-template>
+<!-- eof soal lima -->
+
+<!-- start of soal enam -->
+<ons-template id="soalbuah6">
+  <ons-page modifier="shop-details">
+ <script>
+document.write('<div class="card" style="background-image : url(images/edit/'+buah[answerBuah[6]].nama+'.jpg);"></div>');
+ </script>
+        <center>
+        <p style="margin-top:15px;">Buah apakah ini?</p>
+        </center>
+    </div>    
+    <center>
+    <script>
+        n = [0,1,2,3,4,5,6,7,8,9];
+        n.splice(answerBuah[6],1);
+        n = getRandom(n,3);
+        n.push(answerBuah[6]);
+        shuffle(n);
+    </script>
+    <form id="formbuah6">
+    <ons-list>
+        <ons-list-header>Pilih salah satu dari pilihan dibawah ini:</ons-list-header>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+          <script>
+              document.write('<input type="radio"  name="jwb" value='+n[0]+' onclick="return hideSalah(1);"/>');
+          </script>
+            
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+             <script>
+              document.write(buah[n[0]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[1]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(buah[n[1]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+           <script>
+              document.write('<input type="radio"  name="jwb" value='+n[2]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(buah[n[2]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item" >
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[3]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+           <script>
+              document.write(buah[n[3]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-button id="submit6" class="pilihan" modifier="large--cta" onclick="return cekJawaban(6);">Submit</ons-button>
+        <ons-button id="jaws6" style="display:none" class="pilihan" modifier="large--cta" onclick="myNavigator.pushPage('benar6', { animation : 'slide' } );">Lihat Detail ></ons-button>
+    </ons-list>
+
+    </form>
+    <div id="salah6">     
+    </div>
+    </center>
+    
+  </ons-page>
+</ons-template>
+
+<ons-template id="benar6">
+    <ons-page>
+     <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>    
+     </ons-toolbar>
+     <script>
+         document.write('<div class="card" style="background-image: url(images/asli/'+buah[answerBuah[6]].nama+'.jpg);">');
+     </script>
+     
+        <div class="card-name-bg"></div>
+        <div class="card-name">BENAR!</div>
+    </div>
+    <div class="caption">
+        <center>
+        <script>
+            document.write('<p style="margin-top:5px;">Buah '+buah[answerBuah[6]].nama+'<br/><i>'+buah[answerBuah[6]].namalatin+'</i></p>')
+        </script>
+        
+        </center>
+    </div>
+    
+    <ons-list>
+
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('desk6', { animation : 'slide' } )">Deskripsi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('gizi6', { animation : 'slide' } )">Kandungan Gizi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('hasilguna6', { animation : 'slide' } )">Hasil dan Kegunaan</ons-list-item>
+    <ons-button id="lanjut6" class="next" modifier="large--cta" onclick="nextBuah(6)">Next Level ></ons-button>
+    
+  </ons-list>
+    </ons-page>    
+</ons-template>
+
+<ons-template id="desk6">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Deskripsi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(buah[answerBuah[6]].deskripsi);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="gizi6">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Kandungan Gizi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(buah[answerBuah[6]].kandungan);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="hasilguna6">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Hasil dan Kegunaan</div>
+    </ons-toolbar>
+
+    <script>
+        document.write(buah[answerBuah[6]].hasilguna);
+    </script>
+  </ons-page>
+</ons-template>
+<!-- eof soal enam -->
+
+<!-- start of soal tujuh -->
+<ons-template id="soalbuah7">
+  <ons-page modifier="shop-details">
+ <script>
+document.write('<div class="card" style="background-image : url(images/edit/'+buah[answerBuah[7]].nama+'.jpg);"></div>');
+ </script>
+        <center>
+        <p style="margin-top:15px;">Buah apakah ini?</p>
+        </center>
+    </div>    
+    <center>
+    <script>
+        n = [0,1,2,3,4,5,6,7,8,9];
+        n.splice(answerBuah[7],1);
+        n = getRandom(n,3);
+        n.push(answerBuah[7]);
+        shuffle(n);
+    </script>
+    <form id="formbuah7">
+    <ons-list>
+        <ons-list-header>Pilih salah satu dari pilihan dibawah ini:</ons-list-header>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+          <script>
+              document.write('<input type="radio"  name="jwb" value='+n[0]+' onclick="return hideSalah(1);"/>');
+          </script>
+            
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+             <script>
+              document.write(buah[n[0]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[1]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(buah[n[1]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+           <script>
+              document.write('<input type="radio"  name="jwb" value='+n[2]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(buah[n[2]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item" >
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[3]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+           <script>
+              document.write(buah[n[3]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-button id="submit7" class="pilihan" modifier="large--cta" onclick="return cekJawaban(7);">Submit</ons-button>
+        <ons-button id="jaws7" style="display:none" class="pilihan" modifier="large--cta" onclick="myNavigator.pushPage('benar7', { animation : 'slide' } );">Lihat Detail ></ons-button>
+    </ons-list>
+
+    </form>
+    <div id="salah7">     
+    </div>
+    </center>
+    
+  </ons-page>
+</ons-template>
+
+<ons-template id="benar7">
+    <ons-page>
+     <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>    
+     </ons-toolbar>
+     <script>
+         document.write('<div class="card" style="background-image: url(images/asli/'+buah[answerBuah[7]].nama+'.jpg);">');
+     </script>
+     
+        <div class="card-name-bg"></div>
+        <div class="card-name">BENAR!</div>
+    </div>
+    <div class="caption">
+        <center>
+        <script>
+            document.write('<p style="margin-top:5px;">Buah '+buah[answerBuah[7]].nama+'<br/><i>'+buah[answerBuah[7]].namalatin+'</i></p>')
+        </script>
+        
+        </center>
+    </div>
+    
+    <ons-list>
+
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('desk7', { animation : 'slide' } )">Deskripsi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('gizi7', { animation : 'slide' } )">Kandungan Gizi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('hasilguna7', { animation : 'slide' } )">Hasil dan Kegunaan</ons-list-item>
+    <ons-button id="lanjut7" class="next" modifier="large--cta" onclick="nextBuah(7)">Next Level ></ons-button>
+    
+  </ons-list>
+    </ons-page>    
+</ons-template>
+
+<ons-template id="desk7">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Deskripsi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(buah[answerBuah[7]].deskripsi);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="gizi7">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Kandungan Gizi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(buah[answerBuah[7]].kandungan);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="hasilguna7">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Hasil dan Kegunaan</div>
+    </ons-toolbar>
+
+    <script>
+        document.write(buah[answerBuah[7]].hasilguna);
+    </script>
+  </ons-page>
+</ons-template>
+<!-- eof soal tujuh -->
+
+<!-- start of soal delapan -->
+<ons-template id="soalbuah8">
+  <ons-page modifier="shop-details">
+ <script>
+document.write('<div class="card" style="background-image : url(images/edit/'+buah[answerBuah[8]].nama+'.jpg);"></div>');
+ </script>
+        <center>
+        <p style="margin-top:15px;">Buah apakah ini?</p>
+        </center>
+    </div>    
+    <center>
+    <script>
+        n = [0,1,2,3,4,5,6,7,8,9];
+        n.splice(answerBuah[8],1);
+        n = getRandom(n,3);
+        n.push(answerBuah[8]);
+        shuffle(n);
+    </script>
+    <form id="formbuah8">
+    <ons-list>
+        <ons-list-header>Pilih salah satu dari pilihan dibawah ini:</ons-list-header>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+          <script>
+              document.write('<input type="radio"  name="jwb" value='+n[0]+' onclick="return hideSalah(1);"/>');
+          </script>
+            
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+             <script>
+              document.write(buah[n[0]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[1]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(buah[n[1]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+           <script>
+              document.write('<input type="radio"  name="jwb" value='+n[2]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(buah[n[2]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item" >
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[3]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+           <script>
+              document.write(buah[n[3]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-button id="submit8" class="pilihan" modifier="large--cta" onclick="return cekJawaban(8);">Submit</ons-button>
+        <ons-button id="jaws8" style="display:none" class="pilihan" modifier="large--cta" onclick="myNavigator.pushPage('benar8', { animation : 'slide' } );">Lihat Detail ></ons-button>
+    </ons-list>
+
+    </form>
+    <div id="salah8">     
+    </div>
+    </center>
+    
+  </ons-page>
+</ons-template>
+
+<ons-template id="benar8">
+    <ons-page>
+     <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>    
+     </ons-toolbar>
+     <script>
+         document.write('<div class="card" style="background-image: url(images/asli/'+buah[answerBuah[8]].nama+'.jpg);">');
+     </script>
+     
+        <div class="card-name-bg"></div>
+        <div class="card-name">BENAR!</div>
+    </div>
+    <div class="caption">
+        <center>
+        <script>
+            document.write('<p style="margin-top:5px;">Buah '+buah[answerBuah[8]].nama+'<br/><i>'+buah[answerBuah[8]].namalatin+'</i></p>')
+        </script>
+        
+        </center>
+    </div>
+    
+    <ons-list>
+
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('desk8', { animation : 'slide' } )">Deskripsi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('gizi8', { animation : 'slide' } )">Kandungan Gizi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('hasilguna8', { animation : 'slide' } )">Hasil dan Kegunaan</ons-list-item>
+    <ons-button id="lanjut8" class="next" modifier="large--cta" onclick="nextBuah(8)">Next Level ></ons-button>
+    
+  </ons-list>
+    </ons-page>    
+</ons-template>
+
+<ons-template id="desk8">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Deskripsi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(buah[answerBuah[8]].deskripsi);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="gizi8">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Kandungan Gizi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(buah[answerBuah[8]].kandungan);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="hasilguna8">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Hasil dan Kegunaan</div>
+    </ons-toolbar>
+
+    <script>
+        document.write(buah[answerBuah[8]].hasilguna);
+    </script>
+  </ons-page>
+</ons-template>
+<!-- eof soal delapan -->
+
+<!-- start of soal sembilan -->
+<ons-template id="soalbuah9">
+  <ons-page modifier="shop-details">
+ <script>
+document.write('<div class="card" style="background-image : url(images/edit/'+buah[answerBuah[9]].nama+'.jpg);"></div>');
+ </script>
+        <center>
+        <p style="margin-top:15px;">Buah apakah ini?</p>
+        </center>
+    </div>    
+    <center>
+    <script>
+        n = [0,1,2,3,4,5,6,7,8,9];
+        n.splice(answerBuah[9],1);
+        n = getRandom(n,3);
+        n.push(answerBuah[9]);
+        shuffle(n);
+    </script>
+    <form id="formbuah9">
+    <ons-list>
+        <ons-list-header>Pilih salah satu dari pilihan dibawah ini:</ons-list-header>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+          <script>
+              document.write('<input type="radio"  name="jwb" value='+n[0]+' onclick="return hideSalah(1);"/>');
+          </script>
+            
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+             <script>
+              document.write(buah[n[0]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[1]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(buah[n[1]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+           <script>
+              document.write('<input type="radio"  name="jwb" value='+n[2]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(buah[n[2]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item" >
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[3]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+           <script>
+              document.write(buah[n[3]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-button id="submit9" class="pilihan" modifier="large--cta" onclick="return cekJawaban(9);">Submit</ons-button>
+        <ons-button id="jaws9" style="display:none" class="pilihan" modifier="large--cta" onclick="myNavigator.pushPage('benar9', { animation : 'slide' } );">Lihat Detail ></ons-button>
+    </ons-list>
+
+    </form>
+    <div id="salah9">     
+    </div>
+    </center>
+    
+  </ons-page>
+</ons-template>
+
+<ons-template id="benar9">
+    <ons-page>
+     <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>    
+     </ons-toolbar>
+     <script>
+         document.write('<div class="card" style="background-image: url(images/asli/'+buah[answerBuah[9]].nama+'.jpg);">');
+     </script>
+     
+        <div class="card-name-bg"></div>
+        <div class="card-name">BENAR!</div>
+    </div>
+    <div class="caption">
+        <center>
+        <script>
+            document.write('<p style="margin-top:5px;">Buah '+buah[answerBuah[9]].nama+'<br/><i>'+buah[answerBuah[9]].namalatin+'</i></p>')
+        </script>
+        
+        </center>
+    </div>
+    
+    <ons-list>
+
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('desk9', { animation : 'slide' } )">Deskripsi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('gizi9', { animation : 'slide' } )">Kandungan Gizi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('hasilguna9', { animation : 'slide' } )">Hasil dan Kegunaan</ons-list-item>
+    <ons-button id="lanjut9" class="next" modifier="large--cta" onclick="nextBuah(9)">Next Level ></ons-button>
+    
+  </ons-list>
+    </ons-page>    
+</ons-template>
+
+<ons-template id="desk9">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Deskripsi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(buah[answerBuah[9]].deskripsi);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="gizi9">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Kandungan Gizi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(buah[answerBuah[9]].kandungan);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="hasilguna9">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Hasil dan Kegunaan</div>
+    </ons-toolbar>
+
+    <script>
+        document.write(buah[answerBuah[9]].hasilguna);
+    </script>
+  </ons-page>
+</ons-template>
+<!-- eof soal satu -->
+
+
+
+<!-- soal sayur -->
+<!-- start of soal nol -->
+<ons-template id="soalsayur0">
+  <ons-page modifier="shop-details">
+ <script>
+document.write('<div class="card" style="background-image : url(images/edit/'+sayur[answerSayur[0]].nama+'.jpg);"></div>');
+ </script>
+        <center>
+        <p style="margin-top:15px;">Sayur apakah ini?</p>
+        </center>
+    </div>    
+    <center>
+    <script>
+        n = [0,1,2,3,4,5,6,7,8,9];
+        n.splice(answerSayur[0],1);
+        n = getRandom(n,3);
+        n.push(answerSayur[0]);
+        shuffle(n);
+    </script>
+    <form id="formsayur0">
+    <ons-list>
+        <ons-list-header>Pilih salah satu dari pilihan dibawah ini:</ons-list-header>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+          <script>
+              document.write('<input type="radio"  name="jwb" value='+n[0]+' />');
+          </script>
+            
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+             <script>
+              document.write(sayur[n[0]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[1]+' />');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(sayur[n[1]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+           <script>
+              document.write('<input type="radio"  name="jwb" value='+n[2]+' />');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(sayur[n[2]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item" >
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[3]+' />');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+           <script>
+              document.write(sayur[n[3]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-button id="submitn0" class="pilihan" modifier="large--cta" onclick="return cekJawabann(0);">Submit</ons-button>
+        <ons-button id="jawsn0" style="display:none" class="pilihan" modifier="large--cta" onclick="myNavigator.pushPage('benarn0', { animation : 'slide' } );">Lihat Detail ></ons-button>
+    </ons-list>
+
+    </form>
+    <div id="salahn0">     
+    </div>
+    </center>
+    
+  </ons-page>
+</ons-template>
+
+<ons-template id="benarn0">
+    <ons-page>
+     <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>    
+     </ons-toolbar>
+     <script>
+         document.write('<div class="card" style="background-image: url(images/asli/'+sayur[answerSayur[0]].nama+'.jpg);">');
+     </script>
+     
+        <div class="card-name-bg"></div>
+        <div class="card-name">BENAR!</div>
+    </div>
+    <div class="caption">
+        <center>
+        <script>
+            document.write('<p style="margin-top:5px;">Sayur '+sayur[answerSayur[0]].nama+'<br/><i>'+sayur[answerSayur[0]].namalatin+'</i></p>')
+        </script>
+        
+        </center>
+    </div>
+    
+    <ons-list>
+
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('deskn0', { animation : 'slide' } )">Deskripsi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('gizin0', { animation : 'slide' } )">Kandungan Gizi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('hasilgunan0', { animation : 'slide' } )">Hasil dan Kegunaan</ons-list-item>
+    <ons-button id="lanjutn0" class="next" modifier="large--cta" onclick="nextSayur(0)">Next Level ></ons-button>
+    
+  </ons-list>
+    </ons-page>    
+</ons-template>
+
+<ons-template id="deskn0">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Deskripsi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(sayur[answerSayur[0]].deskripsi);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="gizin0">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Kandungan Gizi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(sayur[answerSayur[0]].kandungan);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="hasilgunan0">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Hasil dan Kegunaan</div>
+    </ons-toolbar>
+
+    <script>
+        document.write(sayur[answerSayur[0]].hasilguna);
+    </script>
+  </ons-page>
+</ons-template>
+<!-- eof soal nol -->
+
+
+
+<!-- start of soal satu -->
+<ons-template id="soalsayur1">
+  <ons-page modifier="shop-details">
+ <script>
+document.write('<div class="card" style="background-image : url(images/edit/'+sayur[answerSayur[1]].nama+'.jpg);"></div>');
+ </script>
+        <center>
+        <p style="margin-top:15px;">Sayur apakah ini?</p>
+        </center>
+    </div>    
+    <center>
+    <script>
+        n = [0,1,2,3,4,5,6,7,8,9];
+        n.splice(answerSayur[1],1);
+        n = getRandom(n,3);
+        n.push(answerSayur[1]);
+        shuffle(n);
+    </script>
+    <form id="formsayur1">
+    <ons-list>
+        <ons-list-header>Pilih salah satu dari pilihan dibawah ini:</ons-list-header>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+          <script>
+              document.write('<input type="radio"  name="jwb" value='+n[0]+' />');
+          </script>
+            
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+             <script>
+              document.write(sayur[n[0]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[1]+' />');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(sayur[n[1]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+           <script>
+              document.write('<input type="radio"  name="jwb" value='+n[2]+' />');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(sayur[n[2]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item" >
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[3]+' />');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+           <script>
+              document.write(sayur[n[3]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-button id="submitn1" class="pilihan" modifier="large--cta" onclick="return cekJawabann(1);">Submit</ons-button>
+         <ons-button id="jawsn1" style="display:none" class="pilihan" modifier="large--cta" onclick="myNavigator.pushPage('benarn1', { animation : 'slide' } );">Lihat Detail ></ons-button>
+    </ons-list>
+
+    </form>
+    <div id="salahn1">     
+    </div>
+    </center>
+    
+  </ons-page>
+</ons-template>
+
+<ons-template id="benarn1">
+    <ons-page>
+     <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>    
+     </ons-toolbar>
+     <script>
+         document.write('<div class="card" style="background-image: url(images/asli/'+sayur[answerSayur[1]].nama+'.jpg);">');
+     </script>
+     
+        <div class="card-name-bg"></div>
+        <div class="card-name">BENAR!</div>
+    </div>
+    <div class="caption">
+        <center>
+        <script>
+            document.write('<p style="margin-top:5px;">Sayur '+sayur[answerSayur[1]].nama+'<br/><i>'+sayur[answerSayur[1]].namalatin+'</i></p>')
+        </script>
+        
+        </center>
+    </div>
+    
+    <ons-list>
+
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('deskn1', { animation : 'slide' } )">Deskripsi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('gizin1', { animation : 'slide' } )">Kandungan Gizi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('hasilgunan1', { animation : 'slide' } )">Hasil dan Kegunaan</ons-list-item>
+    <ons-button id="lanjutn1" class="next" modifier="large--cta" onclick="nextSayur(1)">Next Level ></ons-button>
+    
+  </ons-list>
+    </ons-page>    
+</ons-template>
+
+<ons-template id="deskn1">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Deskripsi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(sayur[answerSayur[1]].deskripsi);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="gizin1">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Kandungan Gizi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(sayur[answerSayur[1]].kandungan);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="hasilgunan1">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Hasil dan Kegunaan</div>
+    </ons-toolbar>
+
+    <script>
+        document.write(sayur[answerSayur[1]].hasilguna);
+    </script>
+  </ons-page>
+</ons-template>
+<!-- eof soal satu -->
+
+<!-- start of soal dua -->
+<ons-template id="soalsayur2">
+  <ons-page modifier="shop-details">
+ <script>
+document.write('<div class="card" style="background-image : url(images/edit/'+sayur[answerSayur[2]].nama+'.jpg);"></div>');
+ </script>
+        <center>
+        <p style="margin-top:15px;">Sayur apakah ini?</p>
+        </center>
+    </div>    
+    <center>
+    <script>
+        n = [0,1,2,3,4,5,6,7,8,9];
+        n.splice(answerSayur[2],1);
+        n = getRandom(n,3);
+        n.push(answerSayur[2]);
+        shuffle(n);
+    </script>
+    <form id="formsayur2">
+    <ons-list>
+        <ons-list-header>Pilih salah satu dari pilihan dibawah ini:</ons-list-header>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+          <script>
+              document.write('<input type="radio"  name="jwb" value='+n[0]+' />');
+          </script>
+            
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+             <script>
+              document.write(sayur[n[0]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[1]+' />');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(sayur[n[1]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+           <script>
+              document.write('<input type="radio"  name="jwb" value='+n[2]+' />');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(sayur[n[2]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item" >
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[3]+' />');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+           <script>
+              document.write(sayur[n[3]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-button id="submitn2" class="pilihan" modifier="large--cta" onclick="return cekJawabann(2);">Submit</ons-button>
+         <ons-button id="jawsn2" style="display:none" class="pilihan" modifier="large--cta" onclick="myNavigator.pushPage('benarn2', { animation : 'slide' } );">Lihat Detail ></ons-button>
+    </ons-list>
+
+    </form>
+    <div id="salahn2">     
+    </div>
+    </center>
+    
+  </ons-page>
+</ons-template>
+
+<ons-template id="benarn2">
+    <ons-page>
+     <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>    
+     </ons-toolbar>
+     <script>
+         document.write('<div class="card" style="background-image: url(images/asli/'+sayur[answerSayur[2]].nama+'.jpg);">');
+     </script>
+     
+        <div class="card-name-bg"></div>
+        <div class="card-name">BENAR!</div>
+    </div>
+    <div class="caption">
+        <center>
+        <script>
+            document.write('<p style="margin-top:5px;">Sayur '+sayur[answerSayur[2]].nama+'<br/><i>'+sayur[answerSayur[2]].namalatin+'</i></p>')
+        </script>
+        
+        </center>
+    </div>
+    
+    <ons-list>
+
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('deskn2', { animation : 'slide' } )">Deskripsi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('gizin2', { animation : 'slide' } )">Kandungan Gizi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('hasilgunan2', { animation : 'slide' } )">Hasil dan Kegunaan</ons-list-item>
+    <ons-button id="lanjutn2" class="next" modifier="large--cta"  onclick="nextSayur(2)">Next Level ></ons-button>
+    
+  </ons-list>
+    </ons-page>    
+</ons-template>
+
+<ons-template id="deskn2">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Deskripsi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(sayur[answerSayur[2]].deskripsi);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="gizin2">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Kandungan Gizi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(sayur[answerSayur[2]].kandungan);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="hasilgunan2">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Hasil dan Kegunaan</div>
+    </ons-toolbar>
+
+    <script>
+        document.write(sayur[answerSayur[2]].hasilguna);
+    </script>
+  </ons-page>
+</ons-template>
+<!-- eof soal dua -->
+
+<!-- start of soal tiga -->
+<ons-template id="soalsayur3">
+  <ons-page modifier="shop-details">
+ <script>
+document.write('<div class="card" style="background-image : url(images/edit/'+sayur[answerSayur[3]].nama+'.jpg);"></div>');
+ </script>
+        <center>
+        <p style="margin-top:15px;">Sayur apakah ini?</p>
+        </center>
+    </div>    
+    <center>
+    <script>
+        n = [0,1,2,3,4,5,6,7,8,9];
+        n.splice(answerSayur[3],1);
+        n = getRandom(n,3);
+        n.push(answerSayur[3]);
+        shuffle(n);
+    </script>
+    <form id="formsayur3">
+    <ons-list>
+        <ons-list-header>Pilih salah satu dari pilihan dibawah ini:</ons-list-header>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+          <script>
+              document.write('<input type="radio"  name="jwb" value='+n[0]+' />');
+          </script>
+            
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+             <script>
+              document.write(sayur[n[0]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[1]+' />');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(sayur[n[1]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+           <script>
+              document.write('<input type="radio"  name="jwb" value='+n[2]+' />');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(sayur[n[2]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item" >
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[3]+' />');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+           <script>
+              document.write(sayur[n[3]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-button id="submitn3" class="pilihan" modifier="large--cta" onclick="return cekJawabann(3);">Submit</ons-button>
+         <ons-button id="jawsn3" style="display:none" class="pilihan" modifier="large--cta" onclick="myNavigator.pushPage('benarn3', { animation : 'slide' } );">Lihat Detail ></ons-button>
+    </ons-list>
+
+    </form>
+    <div id="salahn3">     
+    </div>
+    </center>
+    
+  </ons-page>
+</ons-template>
+
+<ons-template id="benarn3">
+    <ons-page>
+     <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>    
+     </ons-toolbar>
+     <script>
+         document.write('<div class="card" style="background-image: url(images/asli/'+sayur[answerSayur[3]].nama+'.jpg);">');
+     </script>
+     
+        <div class="card-name-bg"></div>
+        <div class="card-name">BENAR!</div>
+    </div>
+    <div class="caption">
+        <center>
+        <script>
+            document.write('<p style="margin-top:5px;">Sayur '+sayur[answerSayur[3]].nama+'<br/><i>'+sayur[answerSayur[3]].namalatin+'</i></p>')
+        </script>
+        
+        </center>
+    </div>
+    
+    <ons-list>
+
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('deskn3', { animation : 'slide' } )">Deskripsi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('gizin3', { animation : 'slide' } )">Kandungan Gizi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('hasilgunan3', { animation : 'slide' } )">Hasil dan Kegunaan</ons-list-item>
+    <ons-button id="lanjutn3" class="next" modifier="large--cta" onclick="nextSayur(3)">Next Level ></ons-button>
+    
+  </ons-list>
+    </ons-page>    
+</ons-template>
+
+<ons-template id="deskn3">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Deskripsi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(sayur[answerSayur[3]].deskripsi);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="gizin3">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Kandungan Gizi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(sayur[answerSayur[3]].kandungan);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="hasilgunan3">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Hasil dan Kegunaan</div>
+    </ons-toolbar>
+
+    <script>
+        document.write(sayur[answerSayur[3]].hasilguna);
+    </script>
+  </ons-page>
+</ons-template>
+<!-- eof soal tiga -->
+
+<!-- start of soal empat -->
+<ons-template id="soalsayur4">
+  <ons-page modifier="shop-details">
+ <script>
+document.write('<div class="card" style="background-image : url(images/edit/'+sayur[answerSayur[4]].nama+'.jpg);"></div>');
+ </script>
+        <center>
+        <p style="margin-top:15px;">Sayur apakah ini?</p>
+        </center>
+    </div>    
+    <center>
+    <script>
+        n = [0,1,2,3,4,5,6,7,8,9];
+        n.splice(answerSayur[4],1);
+        n = getRandom(n,3);
+        n.push(answerSayur[4]);
+        shuffle(n);
+    </script>
+    <form id="formsayur4">
+    <ons-list>
+        <ons-list-header>Pilih salah satu dari pilihan dibawah ini:</ons-list-header>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+          <script>
+              document.write('<input type="radio"  name="jwb" value='+n[0]+' />');
+          </script>
+            
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+             <script>
+              document.write(sayur[n[0]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[1]+' />');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(sayur[n[1]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+           <script>
+              document.write('<input type="radio"  name="jwb" value='+n[2]+' />');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(sayur[n[2]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item" >
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[3]+' />');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+           <script>
+              document.write(sayur[n[3]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-button id="submitn4" class="pilihan" modifier="large--cta" onclick="return cekJawabann(4);">Submit</ons-button>
+         <ons-button id="jawsn4" style="display:none" class="pilihan" modifier="large--cta" onclick="myNavigator.pushPage('benarn4', { animation : 'slide' } );">Lihat Detail ></ons-button>
+    </ons-list>
+
+    </form>
+    <div id="salahn4">     
+    </div>
+    </center>
+    
+  </ons-page>
+</ons-template>
+
+<ons-template id="benarn4">
+    <ons-page>
+     <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>    
+     </ons-toolbar>
+     <script>
+         document.write('<div class="card" style="background-image: url(images/asli/'+sayur[answerSayur[4]].nama+'.jpg);">');
+     </script>
+     
+        <div class="card-name-bg"></div>
+        <div class="card-name">BENAR!</div>
+    </div>
+    <div class="caption">
+        <center>
+        <script>
+            document.write('<p style="margin-top:5px;">Sayur '+sayur[answerSayur[4]].nama+'<br/><i>'+sayur[answerSayur[4]].namalatin+'</i></p>')
+        </script>
+        
+        </center>
+    </div>
+    
+    <ons-list>
+
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('deskn4', { animation : 'slide' } )">Deskripsi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('gizin4', { animation : 'slide' } )">Kandungan Gizi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('hasilgunan4', { animation : 'slide' } )">Hasil dan Kegunaan</ons-list-item>
+    <ons-button id="lanjutn4" class="next" modifier="large--cta" onclick="nextSayur(4)">Next Level ></ons-button>
+    
+  </ons-list>
+    </ons-page>    
+</ons-template>
+
+<ons-template id="deskn4">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Deskripsi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(sayur[answerSayur[4]].deskripsi);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="gizin4">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Kandungan Gizi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(sayur[answerSayur[4]].kandungan);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="hasilgunan4">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Hasil dan Kegunaan</div>
+    </ons-toolbar>
+
+    <script>
+        document.write(sayur[answerSayur[4]].hasilguna);
+    </script>
+  </ons-page>
+</ons-template>
+<!-- eof soal empat -->
+
+<!-- start of soal lima -->
+<ons-template id="soalsayur5">
+  <ons-page modifier="shop-details">
+ <script>
+document.write('<div class="card" style="background-image : url(images/edit/'+sayur[answerSayur[5]].nama+'.jpg);"></div>');
+ </script>
+        <center>
+        <p style="margin-top:15px;">Sayur apakah ini?</p>
+        </center>
+    </div>    
+    <center>
+    <script>
+        n = [0,1,2,3,4,5,6,7,8,9];
+        n.splice(answerSayur[5],1);
+        n = getRandom(n,3);
+        n.push(answerSayur[5]);
+        shuffle(n);
+    </script>
+    <form id="formsayur5">
+    <ons-list>
+        <ons-list-header>Pilih salah satu dari pilihan dibawah ini:</ons-list-header>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+          <script>
+              document.write('<input type="radio"  name="jwb" value='+n[0]+' />');
+          </script>
+            
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+             <script>
+              document.write(sayur[n[0]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[1]+' />');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(sayur[n[1]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+           <script>
+              document.write('<input type="radio"  name="jwb" value='+n[2]+' />');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(sayur[n[2]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item" >
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[3]+' />');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+           <script>
+              document.write(sayur[n[3]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-button id="submitn5" class="pilihan" modifier="large--cta" onclick="return cekJawabann(5);">Submit</ons-button>
+         <ons-button id="jawsn5" style="display:none" class="pilihan" modifier="large--cta" onclick="myNavigator.pushPage('benarn5', { animation : 'slide' } );">Lihat Detail ></ons-button>
+    </ons-list>
+
+    </form>
+    <div id="salahn5">     
+    </div>
+    </center>
+    
+  </ons-page>
+</ons-template>
+
+<ons-template id="benarn5">
+    <ons-page>
+     <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>    
+     </ons-toolbar>
+     <script>
+         document.write('<div class="card" style="background-image: url(images/asli/'+sayur[answerSayur[5]].nama+'.jpg);">');
+     </script>
+     
+        <div class="card-name-bg"></div>
+        <div class="card-name">BENAR!</div>
+    </div>
+    <div class="caption">
+        <center>
+        <script>
+            document.write('<p style="margin-top:5px;">Sayur '+sayur[answerSayur[5]].nama+'<br/><i>'+sayur[answerSayur[5]].namalatin+'</i></p>')
+        </script>
+        
+        </center>
+    </div>
+    
+    <ons-list>
+
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('deskn5', { animation : 'slide' } )">Deskripsi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('gizin5', { animation : 'slide' } )">Kandungan Gizi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('hasilgunan5', { animation : 'slide' } )">Hasil dan Kegunaan</ons-list-item>
+    <ons-button id="lanjutn5" class="next" modifier="large--cta" onclick="nextSayur(5)">Next Level ></ons-button>
+    
+  </ons-list>
+    </ons-page>    
+</ons-template>
+
+<ons-template id="deskn5">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Deskripsi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(sayur[answerSayur[5]].deskripsi);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="gizin5">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Kandungan Gizi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(sayur[answerSayur[5]].kandungan);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="hasilgunan5">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Hasil dan Kegunaan</div>
+    </ons-toolbar>
+
+    <script>
+        document.write(sayur[answerSayur[5]].hasilguna);
+    </script>
+  </ons-page>
+</ons-template>
+<!-- eof soal lima -->
+
+<!-- start of soal enam -->
+<ons-template id="soalsayur6">
+  <ons-page modifier="shop-details">
+ <script>
+document.write('<div class="card" style="background-image : url(images/edit/'+sayur[answerSayur[6]].nama+'.jpg);"></div>');
+ </script>
+        <center>
+        <p style="margin-top:15px;">Sayur apakah ini?</p>
+        </center>
+    </div>    
+    <center>
+    <script>
+        n = [0,1,2,3,4,5,6,7,8,9];
+        n.splice(answerSayur[6],1);
+        n = getRandom(n,3);
+        n.push(answerSayur[6]);
+        shuffle(n);
+    </script>
+    <form id="formsayur6">
+    <ons-list>
+        <ons-list-header>Pilih salah satu dari pilihan dibawah ini:</ons-list-header>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+          <script>
+              document.write('<input type="radio"  name="jwb" value='+n[0]+' />');
+          </script>
+            
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+             <script>
+              document.write(sayur[n[0]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[1]+' />');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(sayur[n[1]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+           <script>
+              document.write('<input type="radio"  name="jwb" value='+n[2]+' />');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(sayur[n[2]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item" >
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[3]+' />');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+           <script>
+              document.write(sayur[n[3]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-button id="submitn6" class="pilihan" modifier="large--cta" onclick="return cekJawabann(6);">Submit</ons-button>
+         <ons-button id="jawsn6" style="display:none" class="pilihan" modifier="large--cta" onclick="myNavigator.pushPage('benarn6', { animation : 'slide' } );">Lihat Detail ></ons-button>
+    </ons-list>
+
+    </form>
+    <div id="salahn6">     
+    </div>
+    </center>
+    
+  </ons-page>
+</ons-template>
+
+<ons-template id="benarn6">
+    <ons-page>
+     <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>    
+     </ons-toolbar>
+     <script>
+         document.write('<div class="card" style="background-image: url(images/asli/'+sayur[answerSayur[6]].nama+'.jpg);">');
+     </script>
+     
+        <div class="card-name-bg"></div>
+        <div class="card-name">BENAR!</div>
+    </div>
+    <div class="caption">
+        <center>
+        <script>
+            document.write('<p style="margin-top:5px;">Sayur '+sayur[answerSayur[6]].nama+'<br/><i>'+sayur[answerSayur[6]].namalatin+'</i></p>')
+        </script>
+        
+        </center>
+    </div>
+    
+    <ons-list>
+
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('deskn6', { animation : 'slide' } )">Deskripsi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('gizin6', { animation : 'slide' } )">Kandungan Gizi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('hasilgunan6', { animation : 'slide' } )">Hasil dan Kegunaan</ons-list-item>
+    <ons-button id="lanjutn6" class="next" modifier="large--cta" onclick="nextSayur(6)">Next Level ></ons-button>
+    
+  </ons-list>
+    </ons-page>    
+</ons-template>
+
+<ons-template id="deskn6">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Deskripsi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(sayur[answerSayur[6]].deskripsi);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="gizin6">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Kandungan Gizi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(sayur[answerSayur[6]].kandungan);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="hasilgunan6">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Hasil dan Kegunaan</div>
+    </ons-toolbar>
+
+    <script>
+        document.write(sayur[answerSayur[6]].hasilguna);
+    </script>
+  </ons-page>
+</ons-template>
+<!-- eof soal enam -->
+
+<!-- start of soal tujuh -->
+<ons-template id="soalsayur7">
+  <ons-page modifier="shop-details">
+ <script>
+document.write('<div class="card" style="background-image : url(images/edit/'+sayur[answerSayur[7]].nama+'.jpg);"></div>');
+ </script>
+        <center>
+        <p style="margin-top:15px;">Sayur apakah ini?</p>
+        </center>
+    </div>    
+    <center>
+    <script>
+        n = [0,1,2,3,4,5,6,7,8,9];
+        n.splice(answerSayur[7],1);
+        n = getRandom(n,3);
+        n.push(answerSayur[7]);
+        shuffle(n);
+    </script>
+    <form id="formsayur7">
+    <ons-list>
+        <ons-list-header>Pilih salah satu dari pilihan dibawah ini:</ons-list-header>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+          <script>
+              document.write('<input type="radio"  name="jwb" value='+n[0]+' />');
+          </script>
+            
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+             <script>
+              document.write(sayur[n[0]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[1]+' />');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(sayur[n[1]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+           <script>
+              document.write('<input type="radio"  name="jwb" value='+n[2]+' />');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(sayur[n[2]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item" >
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[3]+' />');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+           <script>
+              document.write(sayur[n[3]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-button id="submitn7" class="pilihan" modifier="large--cta" onclick="return cekJawabann(7);">Submit</ons-button>
+         <ons-button id="jawsn7" style="display:none" class="pilihan" modifier="large--cta" onclick="myNavigator.pushPage('benarn7', { animation : 'slide' } );">Lihat Detail ></ons-button>
+    </ons-list>
+
+    </form>
+    <div id="salahn7">     
+    </div>
+    </center>
+    
+  </ons-page>
+</ons-template>
+
+<ons-template id="benarn7">
+    <ons-page>
+     <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>    
+     </ons-toolbar>
+     <script>
+         document.write('<div class="card" style="background-image: url(images/asli/'+sayur[answerSayur[7]].nama+'.jpg);">');
+     </script>
+     
+        <div class="card-name-bg"></div>
+        <div class="card-name">BENAR!</div>
+    </div>
+    <div class="caption">
+        <center>
+        <script>
+            document.write('<p style="margin-top:5px;">Sayur '+sayur[answerSayur[7]].nama+'<br/><i>'+sayur[answerSayur[7]].namalatin+'</i></p>')
+        </script>
+        
+        </center>
+    </div>
+    
+    <ons-list>
+
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('deskn7', { animation : 'slide' } )">Deskripsi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('gizin7', { animation : 'slide' } )">Kandungan Gizi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('hasilgunan7', { animation : 'slide' } )">Hasil dan Kegunaan</ons-list-item>
+    <ons-button id="lanjutn7" class="next" modifier="large--cta" onclick="nextSayur(7)">Next Level ></ons-button>
+    
+  </ons-list>
+    </ons-page>    
+</ons-template>
+
+<ons-template id="deskn7">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Deskripsi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(sayur[answerSayur[7]].deskripsi);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="gizin7">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Kandungan Gizi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(sayur[answerSayur[7]].kandungan);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="hasilgunan7">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Hasil dan Kegunaan</div>
+    </ons-toolbar>
+
+    <script>
+        document.write(sayur[answerSayur[7]].hasilguna);
+    </script>
+  </ons-page>
+</ons-template>
+<!-- eof soal tujuh -->
+
+<!-- start of soal delapan -->
+<ons-template id="soalsayur8">
+  <ons-page modifier="shop-details">
+ <script>
+document.write('<div class="card" style="background-image : url(images/edit/'+sayur[answerSayur[8]].nama+'.jpg);"></div>');
+ </script>
+        <center>
+        <p style="margin-top:15px;">Sayur apakah ini?</p>
+        </center>
+    </div>    
+    <center>
+    <script>
+        n = [0,1,2,3,4,5,6,7,8,9];
+        n.splice(answerSayur[8],1);
+        n = getRandom(n,3);
+        n.push(answerSayur[8]);
+        shuffle(n);
+    </script>
+    <form id="formsayur8">
+    <ons-list>
+        <ons-list-header>Pilih salah satu dari pilihan dibawah ini:</ons-list-header>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+          <script>
+              document.write('<input type="radio"  name="jwb" value='+n[0]+' />');
+          </script>
+            
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+             <script>
+              document.write(sayur[n[0]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[1]+' />');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(sayur[n[1]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+           <script>
+              document.write('<input type="radio"  name="jwb" value='+n[2]+' />');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(sayur[n[2]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item" >
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[3]+' />');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+           <script>
+              document.write(sayur[n[3]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-button id="submitn8" class="pilihan" modifier="large--cta" onclick="return cekJawabann(8);">Submit</ons-button>
+         <ons-button id="jawsn8" style="display:none" class="pilihan" modifier="large--cta" onclick="myNavigator.pushPage('benarn8', { animation : 'slide' } );">Lihat Detail ></ons-button>
+    </ons-list>
+
+    </form>
+    <div id="salahn8">     
+    </div>
+    </center>
+    
+  </ons-page>
+</ons-template>
+
+<ons-template id="benarn8">
+    <ons-page>
+     <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>    
+     </ons-toolbar>
+     <script>
+         document.write('<div class="card" style="background-image: url(images/asli/'+sayur[answerSayur[8]].nama+'.jpg);">');
+     </script>
+     
+        <div class="card-name-bg"></div>
+        <div class="card-name">BENAR!</div>
+    </div>
+    <div class="caption">
+        <center>
+        <script>
+            document.write('<p style="margin-top:5px;">Sayur '+sayur[answerSayur[8]].nama+'<br/><i>'+sayur[answerSayur[8]].namalatin+'</i></p>')
+        </script>
+        
+        </center>
+    </div>
+    
+    <ons-list>
+
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('deskn8', { animation : 'slide' } )">Deskripsi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('gizin8', { animation : 'slide' } )">Kandungan Gizi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('hasilgunan8', { animation : 'slide' } )">Hasil dan Kegunaan</ons-list-item>
+    <ons-button id="lanjutn8" class="next" modifier="large--cta" onclick="nextSayur(8)">Next Level ></ons-button>
+    
+  </ons-list>
+    </ons-page>    
+</ons-template>
+
+<ons-template id="deskn8">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Deskripsi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(sayur[answerSayur[8]].deskripsi);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="gizin8">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Kandungan Gizi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(sayur[answerSayur[8]].kandungan);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="hasilgunan8">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Hasil dan Kegunaan</div>
+    </ons-toolbar>
+
+    <script>
+        document.write(sayur[answerSayur[8]].hasilguna);
+    </script>
+  </ons-page>
+</ons-template>
+<!-- eof soal delapan -->
+
+<!-- start of soal sembilan -->
+<ons-template id="soalsayur9">
+  <ons-page modifier="shop-details">
+ <script>
+document.write('<div class="card" style="background-image : url(images/edit/'+sayur[answerSayur[9]].nama+'.jpg);"></div>');
+ </script>
+        <center>
+        <p style="margin-top:15px;">Sayur apakah ini?</p>
+        </center>
+    </div>    
+    <center>
+    <script>
+        n = [0,1,2,3,4,5,6,7,8,9];
+        n.splice(answerSayur[9],1);
+        n = getRandom(n,3);
+        n.push(answerSayur[9]);
+        shuffle(n);
+    </script>
+    <form id="formsayur9">
+    <ons-list>
+        <ons-list-header>Pilih salah satu dari pilihan dibawah ini:</ons-list-header>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+          <script>
+              document.write('<input type="radio"  name="jwb" value='+n[0]+' />');
+          </script>
+            
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+             <script>
+              document.write(sayur[n[0]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[1]+' />');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(sayur[n[1]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+           <script>
+              document.write('<input type="radio"  name="jwb" value='+n[2]+' />');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(sayur[n[2]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item" >
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[3]+' />');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+           <script>
+              document.write(sayur[n[3]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-button id="submitn9" class="pilihan" modifier="large--cta" onclick="return cekJawabann(9);">Submit</ons-button>
+         <ons-button id="jawsn9" style="display:none" class="pilihan" modifier="large--cta" onclick="myNavigator.pushPage('benarn9', { animation : 'slide' } );">Lihat Detail ></ons-button>
+    </ons-list>
+
+    </form>
+    <div id="salahn9">     
+    </div>
+    </center>
+    
+  </ons-page>
+</ons-template>
+
+<ons-template id="benarn9">
+    <ons-page>
+     <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>    
+     </ons-toolbar>
+     <script>
+         document.write('<div class="card" style="background-image: url(images/asli/'+sayur[answerSayur[9]].nama+'.jpg);">');
+     </script>
+     
+        <div class="card-name-bg"></div>
+        <div class="card-name">BENAR!</div>
+    </div>
+    <div class="caption">
+        <center>
+        <script>
+            document.write('<p style="margin-top:5px;">Sayur '+sayur[answerSayur[9]].nama+'<br/><i>'+sayur[answerSayur[9]].namalatin+'</i></p>')
+        </script>
+        
+        </center>
+    </div>
+    
+    <ons-list>
+
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('deskn9', { animation : 'slide' } )">Deskripsi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('gizin9', { animation : 'slide' } )">Kandungan Gizi</ons-list-item>
+    <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('hasilgunan9', { animation : 'slide' } )">Hasil dan Kegunaan</ons-list-item>
+    <ons-button id="lanjutn9" class="next" modifier="large--cta" onclick="nextSayur(9)">Next Level ></ons-button>
+    
+  </ons-list>
+    </ons-page>    
+</ons-template>
+
+<ons-template id="deskn9">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Deskripsi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(sayur[answerSayur[9]].deskripsi);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="gizin9">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Kandungan Gizi</div>
+    </ons-toolbar>
+
+       <script>
+        document.write(sayur[answerSayur[9]].kandungan);
+    </script>
+  </ons-page>
+</ons-template>
+
+<ons-template id="hasilgunan9">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left"><ons-back-button>Back</ons-back-button></div>
+      <div class="center">Hasil dan Kegunaan</div>
+    </ons-toolbar>
+
+    <script>
+        document.write(sayur[answerSayur[9]].hasilguna);
+    </script>
+  </ons-page>
+</ons-template>
+<!-- eof soal sembilan -->
+
+</body>
+</html>
